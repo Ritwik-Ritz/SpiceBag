@@ -1,0 +1,52 @@
+# Build Folders
+bin/
+obj/
+
+# Visual Studio files
+.vs/
+*.sln.ide
+*.suo
+*.user
+*.userprefs
+*.sln.docstates
+
+# Rider files
+.idea/
+
+# Visual Studio Code files
+.vscode/
+
+# DotNet Core files
+project.lock.json
+project.fragment.lock.json
+*.dbmdl
+*.dbproj.schemaview
+*.jfm
+*.pdb
+*.mdb
+*.db
+
+# NuGet Packages
+*.nupkg
+*.snupkg
+packages/
+**/packages/*
+**/node_modules/*
+**/bower_components/*
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+*.cache
+*.pid
+*.seed
+
+# OS generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+Desktop.ini
