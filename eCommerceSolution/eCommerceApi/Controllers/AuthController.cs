@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace eCommerceApi.Controllers;
 
-[Route("api/[controller]")]
+[Route("api/[controller]")] //api/auth
 [ApiController]
 public class AuthController : ControllerBase
 {
