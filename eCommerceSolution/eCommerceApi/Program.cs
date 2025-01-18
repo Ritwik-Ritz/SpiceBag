@@ -21,9 +21,14 @@ builder.Services.AddAutoMapper(typeof(UserMapper).Assembly);
 
 builder.Services.AddFluentValidationAutoValidation();
 
+builder.Services.AddSwaggerGen();
+
 var app = builder.Build();
 
 app.UseExceptionHandling();
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 //routing
 app.UseRouting();

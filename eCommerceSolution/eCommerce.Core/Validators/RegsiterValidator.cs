@@ -17,6 +17,6 @@ public class RegsiterValidator : AbstractValidator<RegisterRequest>
         RuleFor(temp => temp.PersonName).NotEmpty().MinimumLength(1).MaximumLength(50);
 
         //Gender
-        RuleFor(temp => temp.Gender).NotEmpty().IsInEnum().WithMessage("Gender must be Male, female or others");
+        RuleFor(temp => temp.Gender).IsInEnum().WithMessage("Gender must be Male, female or others");
     }
 }
