@@ -19,9 +19,17 @@ public class ProductsService : IProductService
         _mapper = mapper;
     }
 
-    public Task<ProductResponse?> AddProduct(ProductAddRequest request)
+    public async Task<ProductResponse?> AddProduct(ProductAddRequest request)
     {
-        throw new NotImplementedException();
+        if(request == null) throw new ArgumentNullException(nameof(request));
+
+        Product product = _mapper.Map<Product>(request);
+
+        Product? addedProduct = await _repository.AddProduct(product);
+
+        ProductResponse addedProductResponse = _mapper.Map<ProductResponse>(addedProduct);
+
+        return addedProductResponse;
     }
 
     public async Task<bool> DeleteProduct(Guid productId)
@@ -29,23 +37,49 @@ public class ProductsService : IProductService
         return await _repository.DeleteProduct(productId);
     }
 
-    public Task<ProductResponse?> GetProductByCondition(Expression<Func<Product, bool>> expression)
+    public async Task<ProductResponse?> GetProductByCondition(Expression<Func<Product, bool>> expression)
     {
-        throw new NotImplementedException();
+        Product? product = await _repository.GetProductByCondition(expression);
+        ProductResponse? responseProduct = _mapper.Map<ProductResponse>(product);
+        return responseProduct;
     }
 
-    public Task<List<ProductResponse?>> GetProductByExpression(Expression<Func<Product, bool>> expression)
+    public async Task<List<ProductResponse?>> GetProductByExpression(Expression<Func<Product, bool>> expression)
     {
-        throw new NotImplementedException();
+        List<Product?> products = (List<Product?>)await _repository.GetProductsByExpression(expression);
+
+        var responseList = new List<ProductResponse?>();
+
+        foreach(var product in products)
+        {
+            responseList.Add(_mapper.Map<ProductResponse?>(product));
+        }
+
+        return responseList;
     }
 
-    public Task<List<ProductResponse?>> GetProducts()
+    public async Task<List<ProductResponse?>> GetProducts()
     {
-        throw new NotImplementedException();
+        List<Product?> products = (List<Product?>)await _repository.GetProducts();
+
+        var ProductResponseList = new List<ProductResponse?>();
+
+        foreach (Product? product in products)
+        {
+            ProductResponseList.Add(_mapper.Map<ProductResponse>(product));
+        }
+
+        return ProductResponseList;
     }
 
-    public Task<ProductResponse?> UpdateProduct(ProductUpdateRequest request)
+    public async Task<ProductResponse?> UpdateProduct(ProductUpdateRequest request)
     {
-        throw new NotImplementedException();
+        if(request == null || request.ProductId == Guid.Empty) throw new ArgumentNullException(nameof(request));
+
+        Product productToBeUpdated  = _mapper.Map<Product>(request);
+        Product? updatedProduct = await _repository.UpdateProduct(productToBeUpdated);
+
+        ProductResponse updatedProductResponse = _mapper.Map<ProductResponse>(updatedProduct);
+        return updatedProductResponse;
     }
 }

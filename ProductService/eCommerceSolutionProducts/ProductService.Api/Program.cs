@@ -1,6 +1,7 @@
 using eCommerce.Prod.Core;
 using eCommerce.Prod.Service;
 using FluentValidation.AspNetCore;
+using ProductService.Api.ApiEndpoints;
 using ProductService.Api.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,5 +20,6 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+app.MapProductAPI();
 
 app.Run();
