@@ -18,4 +18,6 @@ public class OrderItem
     [BsonRepresentation(MongoDB.Bson.BsonType.Int32)]
     public int Quantity { get; set; }
 
+    [BsonRepresentation(MongoDB.Bson.BsonType.Double)]
+    public Decimal TotalPrice { get; set; }
 }

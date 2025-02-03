@@ -1,4 +1,5 @@
-﻿
+﻿using DataAccess.Repository;
+using DataAccess.RepositoryContracts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
@@ -18,6 +19,8 @@ public static class DependencyInjection
             IMongoClient mongoclient = provider.GetRequiredService<IMongoClient>();
             return mongoclient.GetDatabase("OrdersDb");
         });
+
+        services.AddScoped<IOrdersRepository, OrdersRepository>();
         return services;
     }
 }
